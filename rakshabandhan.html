@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Raksha Bandhan Greeting Card</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            padding: 20px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card img {
+            width: 100px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+            border-radius: 50%;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-7px);
+            }
+        }
+
+        .card h1 {
+            color: #D32F2F;
+            font-size: 24px;
+            margin-bottom: 20px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
+
+        .card p {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+            animation: fadeInText 3s ease-in-out;
+        }
+
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .card .rakhi {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #f57c00;
+            animation: fadeInText 4s ease-in-out;
+        }
+
+        .card .message {
+            margin-top: 30px;
+            font-style: italic;
+            color: #6d4c41;
+            animation: fadeInText 5s ease-in-out;
+        }
+
+        .input-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .input-section input[type="text"] {
+            padding: 8px;
+            width: 80%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-section input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        .input-section button {
+            padding: 8px 16px;
+            background-color: #D32F2F;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-section button:hover {
+            background-color: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img id="siblingImage" src="https://via.placeholder.com/100" alt="Rakhi">
+        <h1>Happy Raksha Bandhan!</h1>
+        <p id="siblingName">Dear Brother/Sister,</p>
+        <p>On this special day, I want to remind you how much you mean to me. 
+        Thank you for always being there and protecting me.</p>
+        <p class="rakhi">May our bond grow stronger with each passing year!</p>
+        <p class="message">With love, <span id="senderName">Gurudev</span></p>
+    </div>
+
+    <div class="input-section">
+        <input type="text" id="nameInput" placeholder="Enter your sibling's name">
+        <input type="text" id="senderInput" placeholder="Enter your name">
+        <input type="file" id="imageInput" accept="image/*">
+        <button onclick="updateCard()">Update Card</button>
+    </div>
+
+    <script>
+        function updateCard() {
+            // Update the sibling's name
+            var name = document.getElementById('nameInput').value;
+            if (name) {
+                document.getElementById('siblingName').textContent = 'Dear ' + name + ',';
+            }
+
+            // Update the sender's name
+            var sender = document.getElementById('senderInput').value;
+            if (sender) {
+                document.getElementById('senderName').textContent = sender;
+            }
+
+            // Update the image
+            var imageInput = document.getElementById('imageInput');
+            if (imageInput.files && imageInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('siblingImage').src = e.target.result;
+                }
+                reader.readAsDataURL(imageInput.files[0]);
+            }
+        }
+    </script>
+
+</body>
+</html>
